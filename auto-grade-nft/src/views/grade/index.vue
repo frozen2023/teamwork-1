@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import request from '@/utils/request'
 export default {
   name: 'gradeIndex',
   components: {},
@@ -58,9 +59,9 @@ export default {
         type: "success"
       })
       await request({
-        url: '',
+        url: 'http://localhost:9000/excel/parse',
         method: "post",
-        data: this.formDate,
+        data: { excel: this.formDate },
         headers: {
           'Content-Type': 'multipart/form-data',
         },
