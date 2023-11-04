@@ -1,7 +1,6 @@
-package com.chen.email.service.impl;
+package com.chen.email;
 
 import com.chen.email.util.JavaEmailUtil;
-import org.springframework.stereotype.Service;
 
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -9,14 +8,15 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.HashMap;
 import java.util.Map;
-public class SendEmailServiceImpl implements com.chen.email.service.SendEmailService{
-    public Map<String,Object> sendEmail(String toEmail,String msg) throws Exception
+
+public class EmailUtil {
+    public static Map<String,Object> sendEmail(String toEmail,String msg) throws Exception
     {
         Map<String,Object> map=new HashMap<>();
         //	创建Session会话
         Session session = JavaEmailUtil
                 .createSession();
-//	创建邮件对象
+    //	创建邮件对象
         MimeMessage message = new MimeMessage(session);
         message.setSubject("成绩单");
         message.setText(msg);

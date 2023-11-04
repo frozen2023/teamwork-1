@@ -22,7 +22,7 @@ public class ExcelParser {
 
     public void parse() {
         EasyExcel.read(inputStream, StudentCourseModel.class, new StudentInfoListener())
-                .sheet(0)
+                .sheet()
                 .doRead();
     }
 
