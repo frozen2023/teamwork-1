@@ -16,7 +16,6 @@ public class EmailUtil {
         //	创建Session会话
         Session session = JavaEmailUtil
                 .createSession();
-        //	创建邮件对象
         MimeMessage message = new MimeMessage(session);
         message.setSubject("成绩单");
         message.setText(msg);
