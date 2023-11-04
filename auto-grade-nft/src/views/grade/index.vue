@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import request from '@/utils/request'
 export default {
   name: 'gradeIndex',
   components: {},
@@ -58,7 +59,7 @@ export default {
         type: "success"
       })
       await request({
-        url: '',
+        url: 'http://43.138.171.179:9000/excel/parse',
         method: "post",
         data: this.formDate,
         headers: {
@@ -103,7 +104,7 @@ export default {
       console.log("uploadfile");
       console.log(file)
       //参数file文件就是传入的文件流，添加进formDate中
-      this.formDate.append("file", file.file)
+      this.formDate.append("excel", file.file)
     },
   },
   created () {},
