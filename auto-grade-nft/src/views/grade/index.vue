@@ -59,9 +59,9 @@ export default {
         type: "success"
       })
       await request({
-        url: 'http://localhost:9000/excel/parse',
+        url: 'http://43.138.171.179:9000/excel/parse',
         method: "post",
-        data: { excel: this.formDate },
+        data: this.formDate,
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -104,7 +104,7 @@ export default {
       console.log("uploadfile");
       console.log(file)
       //参数file文件就是传入的文件流，添加进formDate中
-      this.formDate.append("file", file.file)
+      this.formDate.append("excel", file.file)
     },
   },
   created () {},
