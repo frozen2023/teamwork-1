@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/*
+* @author Frozen
+* */
 public class ExcelParser {
 
     private InputStream inputStream;
@@ -18,19 +21,17 @@ public class ExcelParser {
         this.inputStream = inputStream;
     }
 
-    public InputStream getInputStream() {
-        return inputStream;
-    }
-
     public void setInputStream(InputStream inputStream) {
         this.inputStream = inputStream;
     }
 
     public void parse() {
         StudentInfoListener listener = new StudentInfoListener();
+        // 解析excel
         EasyExcel.read(inputStream, StudentCourseModel.class, listener)
                 .sheet()
                 .doRead();
+        // 解析结果
         List<StudentCourseModel> results = listener.getResults();
         Map<String, List<Pair<String, String>>> grades = new HashMap<>();
         for (StudentCourseModel each : results) {
@@ -44,7 +45,7 @@ public class ExcelParser {
             list.add(new Pair<>(each.getCourse(), each.getGradeHundred()));
             grades.put(name, list);
         }
-
+        // 发送短信
         for (String each : grades.keySet()) {
             StringBuilder builder = new StringBuilder();
             builder.append("亲爱的").append(each).append("同学:\n祝贺您顺利完成本学期的学习！教务处在此向您发送最新的成绩单。\n\n");
